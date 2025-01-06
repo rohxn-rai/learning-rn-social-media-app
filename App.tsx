@@ -1,55 +1,62 @@
 /* eslint-disable quotes */
 import React from 'react';
-import {SafeAreaView, TouchableOpacity, View, Text} from 'react-native';
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+  Text,
+  FlatList,
+} from 'react-native';
 import Title from './components/Title/Title';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import globalStyle from './assets/styles/globalStlye';
+import UserStory from './components/UserStory/UserStory';
 
 const App = () => {
   const userStories = [
     {
-      firstname: 'Joseph',
+      firstName: 'Joseph',
       id: 1,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'Angel',
+      firstName: 'Angel',
       id: 2,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'White',
+      firstName: 'White',
       id: 3,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'Olivier',
+      firstName: 'Olivier',
       id: 4,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'Nata',
+      firstName: 'Nata',
       id: 5,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'Nicolas',
+      firstName: 'Nicolas',
       id: 6,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'Nino',
+      firstName: 'Nino',
       id: 7,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'Nana',
+      firstName: 'Nana',
       id: 8,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
     {
-      firstname: 'Adam',
+      firstName: 'Adam',
       id: 9,
       profileImage: require('./assets/images/pexels-photo-28408585.webp'),
     },
@@ -64,6 +71,19 @@ const App = () => {
             <Text style={globalStyle.messageNumber}>2</Text>
           </View>
         </TouchableOpacity>
+      </View>
+      <View style={globalStyle.userStoryContainer}>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={userStories}
+          renderItem={({item}) => (
+            <UserStory
+              firstName={item.firstName}
+              profileImage={item.profileImage}
+            />
+          )}
+        />
       </View>
     </SafeAreaView>
   );

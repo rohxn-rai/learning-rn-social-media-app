@@ -172,7 +172,7 @@ const App = () => {
     [],
   );
 
-  const userPostPageSize = 4;
+  const userPostPageSize = 2;
   const [userPostCurrentPage, setUserPostCurrentPage] = useState(1);
   const [isLoadingUserPost, setIsLoadingUserPost] = useState(false);
   const [userPostRenderedData, setUserPostRenderedData] = useState<any[]>([]);
@@ -182,8 +182,6 @@ const App = () => {
     currentPage: number,
     pageSize: number,
   ) => {
-    console.log('Current Page: ', currentPage);
-
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     if (startIndex >= database.length) {
@@ -194,9 +192,14 @@ const App = () => {
 
   useEffect(() => {
     setIsLoadingUserStories(true);
-    const getInitialData = pagination(userStories, 1, userStoriesPageSize);
-    setUserStoriesRenderedData(getInitialData);
+    const getInitialStoryData = pagination(userStories, 1, userStoriesPageSize);
+    setUserStoriesRenderedData(getInitialStoryData);
     setIsLoadingUserStories(false);
+
+    setIsLoadingUserPost(true);
+    const getInitialPostData = pagination(userPost, 1, userPostPageSize);
+    setUserPostRenderedData(getInitialPostData);
+    setIsLoadingUserPost(false);
   }, []);
 
   return (
@@ -254,8 +257,25 @@ const App = () => {
               </View>
             </>
           }
+          onEndReachedThreshold={0.5}
+          onEndReached={() => {
+            if (isLoadingUserPost) {
+              return;
+            }
+            setIsLoadingUserPost(true);
+            const contentToAppend = pagination(
+              userPost,
+              userPostCurrentPage + 1,
+              userPostPageSize,
+            );
+            if (contentToAppend.length > 0) {
+              setUserPostCurrentPage(userPostCurrentPage + 1);
+              setUserPostRenderedData(prev => [...prev, ...contentToAppend]);
+            }
+            setIsLoadingUserPost(false);
+          }}
           showsVerticalScrollIndicator={false}
-          data={userPost}
+          data={userPostRenderedData}
           renderItem={({item}) => (
             <View style={globalStyle.userPostContainer}>
               <UserPost
@@ -272,29 +292,6 @@ const App = () => {
             </View>
           )}
         />
-        {/* <FlatList
-          onEndReachedThreshold={0.5}
-          onEndReached={() => {
-            if (isLoadingUserPost) {
-              return;
-            }
-            setIsLoadingUserPost(true);
-            const contentToAppend = pagination(
-              userPost,
-              userPostsCurrentPag + 1,
-              userPostsPageSiz,
-            );
-            if (contentToAppend.length > 0) {
-              setUserPostsCurrentPag(userPostsCurrentPag + 1);
-              setUserPostsRenderedDat(prev => [...prev, ...contentToAppend]);
-            }
-            setIsLoadingUserPost(false);
-          }}
-          showsHorizontalScrollIndicator={false}
-          data={userPostsRenderedDat}
-          renderItem={({item}) => (
-          )}
-        /> */}
       </View>
     </SafeAreaView>
   );

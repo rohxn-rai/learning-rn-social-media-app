@@ -6,7 +6,13 @@ import style from './style';
 const UserStory = props => {
   return (
     <View style={style.storyContainer}>
-      <Image source={props.profileImage} type="image/webp" />
+      <View style={style.userImageContainer}>
+        <Image
+          source={props.profileImage}
+          type="image/webp"
+          style={style.userStory}
+        />
+      </View>
       <Text style={style.firstName}>{props.firstName}</Text>
     </View>
   );
@@ -14,7 +20,8 @@ const UserStory = props => {
 
 UserStory.propTypes = {
   firstName: PropTypes.string.isRequired,
-  profileImage: PropTypes.object.isRequired,
+  profileImage: PropTypes.oneOfType([PropTypes.object, PropTypes.number])
+    .isRequired,
 };
 
 export default UserStory;

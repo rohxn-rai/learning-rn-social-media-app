@@ -14,7 +14,11 @@ import globalStyle from './assets/styles/globalStlye';
 import UserStory from './components/UserStory/UserStory';
 
 const App = () => {
-  const userStories = [
+  const userStories: {
+    firstName: string;
+    id: number;
+    profileImage: object | number;
+  }[] = [
     {
       firstName: 'Joseph',
       id: 1,

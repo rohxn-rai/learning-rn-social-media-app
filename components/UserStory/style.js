@@ -12,17 +12,6 @@ const style = StyleSheet.create({
     fontSize: 14,
     marginTop: 8,
   },
-  userStory: {
-    height: 75,
-    width: 75,
-    borderRadius: 50,
-  },
-  userImageContainer: {
-    borderColor: '#f35BAC',
-    borderWidth: 1,
-    padding: 4,
-    borderRadius: 50,
-  },
 });
 
 export default style;

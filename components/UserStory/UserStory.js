@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Image, View, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import style from './style';
+import UserProfileImage from '../UserProfileImage/UserProfileImage';
 
 const UserStory = props => {
   return (
     <View style={style.storyContainer}>
-      <View style={style.userImageContainer}>
-        <Image
-          source={props.profileImage}
-          type="image/webp"
-          style={style.userStory}
-        />
-      </View>
+      <UserProfileImage profileImage={props.profileImage} imageDimension={65} />
       <Text style={style.firstName}>{props.firstName}</Text>
     </View>
   );

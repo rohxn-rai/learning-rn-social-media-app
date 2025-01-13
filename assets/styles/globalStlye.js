@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {getFontFamily} from '../fonts/helper';
+import {getFontFamily} from '@/assets/fonts/helper';
 
 const globalStyle = StyleSheet.create({
   socialMediaPage: {

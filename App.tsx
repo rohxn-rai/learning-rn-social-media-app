@@ -8,12 +8,12 @@ import {
   Text,
   FlatList,
 } from 'react-native';
-import Title from './components/Title/Title';
+import Title from '@/components/Title/Title';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
-import globalStyle from './assets/styles/globalStlye';
-import UserStory from './components/UserStory/UserStory';
-import UserPost from './components/UserPost/UserPost';
+import globalStyle from '@/assets/styles/globalStlye';
+import UserStory from '@/components/UserStory/UserStory';
+import UserPost from '@/components/UserPost/UserPost';
 
 const App = () => {
   const userStories = [
